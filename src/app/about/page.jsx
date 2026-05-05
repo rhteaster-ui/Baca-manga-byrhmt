@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Download, AlertTriangle } from "lucide-react";
 
 const tech = [
   { icon: "⚛️", name: "Frontend", desc: "Next.js 15 / JSX" },
@@ -73,6 +74,24 @@ export default function AboutPage() {
               Platform Baca Manga, Manhua &amp; Manhwa · v1.0.0
             </p>
 
+
+
+            <div
+              className="w-full rounded-2xl p-4 mb-4 text-left"
+              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(245,158,11,0.16)" }}
+            >
+              <p className="text-sm font-semibold text-white">Install MangaRift App</p>
+              <p className="text-xs mt-1" style={{ color: "#9ca3af" }}>
+                Simpan app ke Home Screen agar akses lebih cepat seperti aplikasi native.
+              </p>
+              <button
+                className="mt-3 inline-flex items-center gap-2 text-xs px-3 py-2 rounded-lg"
+                style={{ background: "rgba(245,158,11,0.18)", color: "#fbbf24", border: "1px solid rgba(245,158,11,0.3)" }}
+              >
+                <Download size={14} /> Install ke Home
+              </button>
+            </div>
+
             {/* Dev card */}
             <div
               className="w-full flex items-center gap-3 rounded-2xl p-3"
@@ -108,7 +127,7 @@ export default function AboutPage() {
           className="rounded-2xl p-4"
           style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.07)" }}
         >
-          <p className="text-[10px] uppercase tracking-widest mb-3" style={{ color: "#4b5563" }}>Hubungi Dev</p>
+          <p className="text-[10px] uppercase tracking-widest mb-3" style={{ color: "#4b5563" }}>Hubungi Dev & Join Saluran</p>
           <div className="flex flex-wrap gap-2">
             {socials.map((s) => (
               <a
@@ -156,7 +175,7 @@ export default function AboutPage() {
             className="text-[11px] font-semibold uppercase tracking-widest mb-2"
             style={{ color: "#f59e0b" }}
           >
-            📲 Install sebagai App
+            <span className="inline-flex items-center gap-1"><Download size={13} /> Install sebagai App</span>
           </h2>
           <p className="text-xs leading-relaxed" style={{ color: "#9ca3af" }}>
             MangaRift dapat diinstall sebagai aplikasi. Di browser, buka menu{" "}
@@ -195,7 +214,7 @@ export default function AboutPage() {
           style={{ background: "rgba(239,68,68,0.04)", border: "1px solid rgba(239,68,68,0.12)" }}
         >
           <h2 className="text-[11px] font-semibold uppercase tracking-widest mb-2" style={{ color: "#ef4444" }}>
-            ⚠️ Disclaimer
+            <span className="inline-flex items-center gap-1"><AlertTriangle size={13} /> Disclaimer</span>
           </h2>
           <p className="text-xs leading-relaxed" style={{ color: "#9ca3af" }}>
             MangaRift tidak menyimpan konten manga di server kami. Semua data bersumber dari MangaDex. Dibuat untuk tujuan edukasi &amp; pengembangan.
@@ -203,7 +222,7 @@ export default function AboutPage() {
         </div>
 
         <div className="text-center py-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-          <p className="text-[11px]" style={{ color: "#374151" }}>© 2026 R_hmt ofc · MangaRift 📚</p>
+          <p className="text-[11px]" style={{ color: "#374151" }}>© 2026 R_hmt ofc · MangaRift</p>
         </div>
       </div>
     </div>

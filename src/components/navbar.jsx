@@ -2,11 +2,10 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Languages } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [searchVal, setSearchVal] = useState("");
   const router = useRouter();
 
@@ -15,7 +14,6 @@ export default function Navbar() {
     if (!searchVal.trim()) return;
     router.push(`/search?q=${encodeURIComponent(searchVal.trim())}`);
     setSearchVal("");
-    setMenuOpen(false);
   }
 
   return (
@@ -29,6 +27,13 @@ export default function Navbar() {
       }}
     >
       <div className="max-w-5xl mx-auto flex items-center justify-between gap-3 px-4 py-3">
+        <button
+          className="w-9 h-9 flex md:hidden items-center justify-center rounded-xl text-gray-300"
+          style={{ background: "rgba(255,255,255,0.06)" }}
+          aria-label="Bahasa"
+        >
+          <Languages size={18} />
+        </button>
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2 flex-shrink-0">
           <div
@@ -84,47 +89,29 @@ export default function Navbar() {
         </nav>
 
         {/* Mobile icons */}
-        <div className="flex md:hidden items-center gap-2">
-          <Link
-            href="/search"
-            className="w-9 h-9 flex items-center justify-center rounded-xl text-gray-400"
-            style={{ background: "rgba(255,255,255,0.05)" }}
-          >
-            <Search size={18} />
-          </Link>
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="w-9 h-9 flex items-center justify-center rounded-xl text-gray-400"
-            style={{ background: "rgba(255,255,255,0.05)" }}
-          >
-            {menuOpen ? <X size={18} /> : <Menu size={18} />}
-          </button>
-        </div>
+        <Link
+          href="/search"
+          className="w-9 h-9 flex md:hidden items-center justify-center rounded-xl text-gray-400"
+          style={{ background: "rgba(255,255,255,0.05)" }}
+        >
+          <Search size={18} />
+        </Link>
       </div>
 
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div
-          className="md:hidden px-4 pb-4 flex flex-col gap-2 border-t"
-          style={{ borderColor: "rgba(255,255,255,0.06)" }}
-        >
-          <form onSubmit={handleSearch} className="mt-3">
-            <div className="relative">
-              <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
-              <input
-                value={searchVal}
-                onChange={(e) => setSearchVal(e.target.value)}
-                placeholder="Cari manga..."
-                className="w-full text-sm text-gray-200 placeholder-gray-600 rounded-xl pl-9 pr-4 py-2.5 outline-none"
-                style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.09)" }}
-              />
-            </div>
-          </form>
-          <Link href="/" onClick={() => setMenuOpen(false)} className="text-sm text-gray-300 py-2 px-3 rounded-lg hover:bg-white/5">🏠 Home</Link>
-          <Link href="/search" onClick={() => setMenuOpen(false)} className="text-sm text-gray-300 py-2 px-3 rounded-lg hover:bg-white/5">🔍 Jelajah Manga</Link>
-          <Link href="/about" onClick={() => setMenuOpen(false)} className="text-sm text-gray-300 py-2 px-3 rounded-lg hover:bg-white/5">👤 About</Link>
-        </div>
-      )}
+      <div className="md:hidden px-4 pb-3">
+        <form onSubmit={handleSearch}>
+          <div className="relative">
+            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+            <input
+              value={searchVal}
+              onChange={(e) => setSearchVal(e.target.value)}
+              placeholder="Cari manga, manhua, manhwa..."
+              className="w-full text-sm text-gray-200 placeholder-gray-600 rounded-xl pl-9 pr-4 py-2.5 outline-none"
+              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.09)" }}
+            />
+          </div>
+        </form>
+      </div>
     </header>
   );
 }
